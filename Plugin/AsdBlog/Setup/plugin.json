@@ -1,0 +1,73 @@
+{
+    "title": "Blog Widget",
+    "version": "1.00",
+    "name": "AsdBlog",
+    "description": "Blog plugin with many options to make it suitable for your website.",
+    "author": "Simonas Dimavičius",
+    "options": [
+        {
+            "label": "Default intro symbols limit if separator is not added",
+            "name": "introLimit",
+            "type": "text",
+            "default": "300"
+        },
+        {
+            "label": "Default post limit per page",
+            "name": "postLimit",
+            "type": "text",
+            "default": "10"
+        },
+        {
+            "label": "Show title as link to post",
+            "name": "addTitlelink",
+            "type": "select",
+            "default": "Yes",
+            "values": ["No", "Yes"]
+        },
+        {
+            "label": "Show read more link",
+            "name": "showReadMore",
+            "type": "select",
+            "default": "Yes",
+            "values": ["No", "Yes"]
+        },
+        {
+            "label": "Show post date",
+            "name": "showDate",
+            "type": "select",
+            "default": "No",
+            "values": ["No", "Yes"]
+        },
+        {
+            "label": "Date format",
+            "name": "dateFormat",
+            "type": "text",
+            "default": "Y-m-d"
+        },
+        {
+            "label": "Show post time",
+            "name": "showTime",
+            "type": "select",
+            "default": "No",
+            "values": ["No", "Yes"]
+        },
+        {
+            "label": "Time format",
+            "name": "timeFormat",
+            "type": "text",
+            "default": "H:i:s"
+        },
+        {
+            "label": "Alowed tags from post",
+            "name": "allowedTags",
+            "type": "text",
+            "default": "<b><span><i><strong><em><a><img><p>"
+        },
+        {
+            "label": "Post block name",
+            "name": "blockName",
+            "type": "text",
+            "default": "main"
+        }
+    ]
+}

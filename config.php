@@ -11,11 +11,11 @@
     'debugMode' => 0, // Debug mode loads raw unminified JavaScript files, alerts AJAX errors.
     'timezone' => 'Asia/Ho_Chi_Minh', // PHP 5 requires timezone to be set.
     'db' => array (
-        'hostname' => 'mysql.hostinger.vn',
-        'username' => 'u158551420_root',
-        'password' => 'password',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => 'mysql',
         'tablePrefix' => 'ip_',
-        'database' => 'u158551420_nhhs',
+        'database' => 'nhhs',
         'charset' => 'utf8',
       ), // Database configuration
 );

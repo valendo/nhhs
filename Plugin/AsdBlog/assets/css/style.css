@@ -1,0 +1,44 @@
+.asdBlog-post {
+    border-bottom: 1px dotted #CDCDCD;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.asdBlog-post-empty {
+	background-color: #F2F2F2;
+	color: #CCCCCC;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.asdBlog-end {
+	text-align: right;
+	font-weight: normal;
+}
+
+.asdBlog-bold {
+	color: #888;
+}
+
+.asdBlog-read-more {
+    text-align: right;
+}
+
+.asdBlog-pagination ul {
+    list-style: none;
+    text-align: center;
+}
+
+.asdBlog-pagination ul li {
+    display: inline-block;
+}
+
+.asdBlog-separator {
+	background-color: #E96044;
+	text-align: center;
+	border-radius: 15px;
+	color: #FFF;
+	font-size: 12px;
+	line-height: 18px;
+}
