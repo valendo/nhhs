@@ -15,13 +15,30 @@ class AdminController
      * @ipSubmenu Products
      */
     public function index(){
+        $rootCategories = ipDb()->selectAll('productCategory', '*', array('parentId' => -1));
+        $categoriesSelect = array();
+        foreach ($rootCategories as $rootCategory) {
+            array_push($categoriesSelect, array($rootCategory['id'], $rootCategory['name']));
+            $categories = ipDb()->selectAll('productCategory', '*', array('parentId' => $rootCategory['id']));
+            foreach ($categories as $category) {
+                array_push($categoriesSelect, array($category['id'], '----' . $category['name']));
+            }
+        }
+
         $config = array(
             'title' => 'Product List',
             'table' => 'product',
             'deleteWarning' => 'Are you sure?',
             'createPosition' => 'top',
-            'pageSize' => 5,
+            'pageSize' => 100,
             'fields' => array(
+                array(
+                    'type' => 'RepositoryFile',
+                    'label' => 'Picture',
+                    'showInList' => true,
+                    'field' => 'picture',
+                    'preview' => __CLASS__ . '::previewPicture'
+                ),
                 array(
                     'label' => 'Name',
                     'field' => 'name',
@@ -37,15 +54,8 @@ class AdminController
                    'type' => 'Select',
                    'label' => 'Category',
                    'field' => 'categoryID',
-                   'values' => array(
-                       array(1, 'Category 1'),
-                       array(2, 'Category 2')
-                   )
+                   'values' => $categoriesSelect
                 ),
-//                array(
-//                    'label' => 'Date Modified',
-//                    'field' => 'DateModified',
-//                ),
                 array(
 					'type' => 'richtext',
                     'label' => 'Content',
@@ -57,17 +67,11 @@ class AdminController
                     'label' => 'Option 1',
                     'showInList' => true,
                     'field' => 'option1'
-                ),
-                array(
-                    'type' => 'RepositoryFile',
-                    'label' => 'Picture',
-                    'showInList' => true,
-                    'field' => 'picture'
                 )
-
             )
         );
 		return ipGridController($config);
+        //return $html;
     }
 	
 	/**
@@ -75,27 +79,45 @@ class AdminController
      */
 	public function submenu()
     {
+        $parentCategories = ipDb()->selectAll('productCategory', '*', array('parentId' => -1));
+        $parentCategoriesSelect = array();
+        array_push($parentCategoriesSelect, array(-1, '- None -'));
+        foreach ($parentCategories as $category) {
+            array_push($parentCategoriesSelect, array($category['id'], $category['name']));
+        }
+
 		$config = array(
             'title' => 'Category List',
             'table' => 'productCategory',
             'createPosition' => 'top',
-            'pageSize' => 5,
+            'pageSize' => 50,
             'fields' => array(
                 array(
                     'label' => 'Name',
                     'field' => 'name',
+                    'validators' => array('Required')
                 ),
                 array(
                     'type' => 'Select',
                     'label' => 'Parent',
                     'field' => 'parentId',
-                    'values' => array(
-                        array(1, 'Category 1'),
-                        array(2, 'Category 2')
-                    )
+                    'values' => $parentCategoriesSelect
                 )
             )
         );
         return ipGridController($config);
+    }
+
+    public static function previewPicture($value, $recordData)
+    {
+        $picture = esc($recordData['picture']);
+        $options = array(
+            'type' => 'width',
+            'width' => 100,
+            'forced' => true
+        );
+        $picture = ipFileUrl(ipReflection($picture, $options));
+
+        return '<img src="' . $picture . '" />' ;
     }
 }

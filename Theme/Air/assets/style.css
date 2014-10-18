@@ -1,0 +1,10 @@
+.main-category
+{
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-top:5px;
+}
+.sub-category
+{
+	padding:5px 0 5px 20px;
+}
