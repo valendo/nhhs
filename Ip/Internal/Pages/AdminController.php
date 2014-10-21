@@ -32,6 +32,15 @@ class AdminController extends \Ip\Controller
         ipAddJsVariable('languageList', Helper::languageList());
 
         $menus = Model::getMenuList();
+        foreach($menus as $key => &$menu) {
+            $default = 'top';
+            if ($key == 0) {
+                $default = 'bottom';
+            }
+            $menu['defaultPosition'] = Model::getDefaultMenuPagePosition($menu['alias'], false, $default);
+            $default = 'bellow';
+            $menu['defaultPositionWhenSelected'] = Model::getDefaultMenuPagePosition($menu['alias'], true, $default);
+        }
         $menus = ipFilter('ipPagesMenuList', $menus);
         ipAddJsVariable('menuList', $menus);
 
@@ -43,6 +52,7 @@ class AdminController extends \Ip\Controller
         $layout = ipView('view/layout.php', $variables);
 
         ipResponse()->setLayoutVariable('removeAdminContentWrapper', true);
+        ipAddJsVariable('listStylePageSize', ipGetOption('Pages.pageListSize', 30));
 
         return $layout->render();
     }
@@ -184,13 +194,17 @@ class AdminController extends \Ip\Controller
         }
 
         $title = ipRequest()->getPost('title');
-        if (empty($title)) {
+        if ($title === '') {
             $title = __('Untitled', 'Ip-admin', false);
         }
 
         $isVisible = ipRequest()->getPost('isVisible', 0);
 
         $pageId = Service::addPage($parentId, $title, array('isVisible' => $isVisible));
+        $position = ipRequest()->getPost('position');
+        if ($position !== null) {
+            Service::movePage($pageId, $parentId, $position);
+        }
 
         $eventData = ipRequest()->getPost();
         ipEvent('ipFormCreatePageSubmitted', $eventData);
@@ -204,6 +218,18 @@ class AdminController extends \Ip\Controller
 
         return new \Ip\Response\Json($answer);
 
+    }
+
+    public function setDefaultPagePosition()
+    {
+        ipRequest()->mustBePost();
+        $alias = ipRequest()->getPost('alias');
+        $isPageSelected = ipRequest()->getPost('isPageSelected');
+        $position = ipRequest()->getPost('position');
+
+        Model::setDefaultMenuPagePosition($alias, $isPageSelected, $position);
+
+        return new \Ip\Response\Json(1);
     }
 
     public function deletePage()

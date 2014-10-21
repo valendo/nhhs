@@ -19,10 +19,6 @@ class AdminController
         $categoriesSelect = array();
         foreach ($rootCategories as $rootCategory) {
             array_push($categoriesSelect, array($rootCategory['id'], $rootCategory['name']));
-            $categories = ipDb()->selectAll('productCategory', '*', array('parentId' => $rootCategory['id']));
-            foreach ($categories as $category) {
-                array_push($categoriesSelect, array($category['id'], '----' . $category['name']));
-            }
         }
 
         $config = array(

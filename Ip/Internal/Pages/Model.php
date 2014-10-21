@@ -170,6 +170,24 @@ class Model
         return ipDb()->selectAll('page', '*', array('parentId' => $parentId, 'isDeleted' => 0), $sqlEnd);
     }
 
+    public static function getDefaultMenuPagePosition($menuAlias, $whenPageIsSelected, $default)
+    {
+        $key = 'menu_' . $menuAlias . '_default_position';
+        if ($whenPageIsSelected) {
+            $key .= '_selected';
+        }
+        return ipStorage()->get('Pages', $key, $default);
+    }
+
+    public static function setDefaultMenuPagePosition($menuAlias, $whenPageIsSelected, $position)
+    {
+        $key = 'menu_' . $menuAlias . '_default_position';
+        if ($whenPageIsSelected) {
+            $key .= '_selected';
+        }
+        ipStorage()->set('Pages', $key, $position);
+    }
+
     /**
      * Get menu list
      *
@@ -482,7 +500,7 @@ class Model
 
         $data['alias'] = static::allocateUniqueAlias($languageCode, $alias);
         $data['title'] = $title;
-        $date['type'] = $type;
+        $data['type'] = $type;
 
         $data['parentId'] = 0;
         $data['pageOrder'] = static::getNextPageOrder(

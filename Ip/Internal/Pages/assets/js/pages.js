@@ -117,7 +117,7 @@ var ipPageDragId;
                     title = $properties.find('input[name=metaTitle]').val();
                 }
                 if ($scope.activeMenu.type == 'list') { // list view
-                    getTreeDiv().find('.ipsRow.active .ipsDrag').text(escapeHtml(title));
+                    getTreeDiv().find('.ipsRow.active .ipsDrag').text(title);
                 } else { // tree view
                     getTreeDiv().jstree('rename_node', getTreeDiv().jstree('get_selected'), escapeHtml(title));
                 }
@@ -126,12 +126,46 @@ var ipPageDragId;
             // removing element from list/tree
             $properties.off('delete.ipPages').on('delete.ipPages', function () {
                 if (confirm(ipTranslationAreYouSure)) {
+                    var nextId = null;
+
+                    //detect which page has to be selected after this one is deleted
+                    if ($scope.activeMenu.type === 'list') { // list view
+                        var cur = $('.ipsTreeDiv tr[data-id=' + $scope.selectedPageId + ']');
+                        var next = $('.ipsTreeDiv tr').eq(cur.index() + 1).first();
+                        if (next.length) {
+                            nextId = next.data('id');
+                        } else {
+                            var prev = $('.ipsTreeDiv tr').eq(cur.index() - 1).first();
+                            if (prev.length) {
+                                nextId = prev.data('id');
+                            }
+                        }
+                    } else {
+                        var $cur = $('.ipsTreeDiv li[pageid=' + $scope.selectedPageId + ']');
+                        var $next = $cur.next();
+                        if ($next.length) {
+                            nextId = $next.attr('pageid');
+                        } else {
+                            var $prev = $cur.prev();
+                            if ($prev.length) {
+                                nextId = $prev.attr('pageid');
+                            }
+                        }
+                    }
+
+                    //actually delete the page
                     deletePage($scope.selectedPageId, function () {
                         $scope.selectedPageId = null;
-                        if ($scope.activeMenu.type == 'list') { // list view
+                        if ($scope.activeMenu.type === 'list') { // list view
                             getPagesContainer().ipGrid('refresh');
+                            if (nextId) {
+                                $scope.activatePage(nextId, $scope.activeMenu.alias);
+                            }
                         } else {
                             getTreeDiv().jstree('delete_node', getTreeDiv().jstree('get_selected'));
+                            if (nextId) {
+                                getTreeDiv().find('#page_' + nextId + ' a').click();
+                            }
                         }
                         $scope.$apply();
                     });
@@ -170,11 +204,89 @@ var ipPageDragId;
             $modal.find('.ipsAdd').off('click').on('click', function () {
                 $modal.find('form').submit()
             });
+
+            var $positionSelect = $modal.find('form select[name=position]');
+            if ($scope.selectedPageId) {
+                $positionSelect.find('option[value=above]').show();
+                $positionSelect.find('option[value=child]').show();
+                $positionSelect.find('option[value=bellow]').show();
+                $positionSelect.val($scope.activeMenu.defaultPositionWhenSelected);
+                if ($scope.activeMenu.type == 'list') {
+                    $positionSelect.find('option[value=child]').hide();
+                }
+            } else {
+                $positionSelect.val($scope.activeMenu.defaultPosition);
+                $positionSelect.find('option[value=above]').hide();
+                $positionSelect.find('option[value=child]').hide();
+                $positionSelect.find('option[value=bellow]').hide();
+            }
+
             $modal.find('form').off('submit').on('submit', function (e) {
+
                 e.preventDefault();
                 var title = $modal.find('input[name=title]').val();
                 var isVisible = $modal.find('input[name=isVisible]').is(':checked') ? 1 : 0;
-                addPage(title, isVisible);
+
+                var parentId = $scope.activeMenu.id;
+                var position = 0;
+                switch($modal.find('select[name=position]').val()) {
+                    default:
+                    case 'top':
+                        //Default settings are just fine
+                        break;
+                    case 'above':
+                        if ($scope.selectedPageId && $scope.activeMenu.type != 'list') {
+                            var $selectedPage = $('#page_' + $scope.selectedPageId);
+                            var $parent = $selectedPage.parent().closest('li');
+                            if ($parent.length) {
+                                parentId = $parent.attr('pageid');
+                            }
+                            position = $selectedPage.index();
+                        } else {
+                            position = $('.ipsTreeDiv .active').index();
+                            var curVariables = getHashParams();
+                            if (curVariables.gpage) {
+                                position = position + (curVariables.gpage - 1) * listStylePageSize;
+                            }
+                        }
+                        break;
+                    case 'child':
+                        if ($scope.selectedPageId && $scope.activeMenu.type != 'list') {
+                            parentId = $scope.selectedPageId;
+                        }
+                        break;
+                    case 'bellow':
+                        if ($scope.selectedPageId && $scope.activeMenu.type != 'list') {
+                            var $selectedPage = $('#page_' + $scope.selectedPageId);
+                            var $parent = $selectedPage.parent().closest('li');
+                            if ($parent.length) {
+                                parentId = $parent.attr('pageid');
+                            }
+                            position = $('#page_' + $scope.selectedPageId).index() + 1;
+                        } else {
+                            position = $('.ipsTreeDiv .active').index() + 1;
+                            var curVariables = getHashParams();
+                            if (curVariables.gpage) {
+                                position = position + (curVariables.gpage - 1) * listStylePageSize;
+                            }
+                        }
+
+                        break;
+                    case 'bottom':
+                        if ($scope.selectedPageId && $scope.activeMenu.type != 'list') {
+                            position = getTreeDiv().find('ul').first().children().length;
+                        } else {
+                            position = $('.ipsTreeDiv tr').length;
+                            var curVariables = getHashParams();
+                            if (curVariables.gpage) {
+                                position = position + (curVariables.gpage - 1) * listStylePageSize;
+                            }
+                        }
+                        break;
+                }
+
+                setDefaultPositionForNextTime($scope.activeMenu.alias, $modal.find('select[name=position]').val(), $scope.selectedPageId ? 1 : 0);
+                addPage(title, isVisible, parentId, position);
                 $modal.modal('hide');
             });
         };
@@ -284,6 +396,19 @@ var ipPageDragId;
 
         $scope.pastePage = function () {
             var position = getTreeDiv().find('ul').first().children.length;
+            if ($scope.selectedPageId) {
+                if ($scope.selectedPageId && $scope.activeMenu.type != 'list') {
+                    position = $('#page_' + $scope.selectedPageId).index() + 1;
+                } else {
+                    position = $('.ipsTreeDiv .active').index() + 1;
+                    var curVariables = getHashParams();
+                    if (curVariables.gpage) {
+                        position = position + (curVariables.gpage - 1) * listStylePageSize;
+                    }
+                }
+            }
+            //alert(position);return;
+
             if ($scope.cutPageId) {
                 movePage($scope.cutPageId, $scope.activeMenu.id, position, true);
             } else {
@@ -330,7 +455,7 @@ var ipPageDragId;
                 }
             } else {
                 if (getPagesContainer().data('ipPageTree')) {
-                    return; //alrady initialized
+                    return; //already initialized
                 }
                 getTreeDiv().off('loaded.jstree').on('loaded.jstree', function (e) {
                     $('#page_' + $scope.selectedPageId + ' a').first().click();
@@ -396,26 +521,50 @@ var ipPageDragId;
             if ($scope.activeMenu.type == 'list') { // list view
                 getPagesContainer().ipGrid('refresh');
             } else {
+                var selectedPageId = $scope.selectedPageId;
                 getPagesContainer().ipPageTree('destroy');
                 $scope.activateMenu($scope.activeMenu);
+                if (selectedPageId) {
+                    $scope.activatePage(selectedPageId, $scope.activeMenu.alias);
+                }
                 $scope.$apply();
+
             }
         };
 
 
-        var addPage = function (title, isvisible) {
-            var parentId = $scope.activeMenu.id;
-
-            if ($scope.selectedPageId && $scope.activeMenu.type != 'list') {
-                parentId = $scope.selectedPageId;
+        var setDefaultPositionForNextTime = function (alias, position, isPageSelected) {
+            if (isPageSelected) {
+                $scope.activeMenu.defaultPositionWhenSelected = position;
+            } else {
+                $scope.activeMenu.defaultPosition = position;
             }
+
+            var data = {
+                aa: 'Pages.setDefaultPagePosition',
+                securityToken: ip.securityToken,
+                alias: alias,
+                isPageSelected: isPageSelected,
+                position: position
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: ip.baseUrl,
+                data: data,
+                dataType: 'json'
+            });
+        };
+
+        var addPage = function (title, isvisible, parentId, position) {
 
             var data = {
                 aa: 'Pages.addPage',
                 securityToken: ip.securityToken,
                 title: title,
                 isVisible: isvisible,
-                parentId: parentId
+                parentId: parentId,
+                position: position
             };
 
             $.ajax({

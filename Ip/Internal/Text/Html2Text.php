@@ -5,6 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ * https://github.com/soundasleep/html2text
  *
  * or
  *
@@ -42,17 +43,21 @@ class Html2Text
      * </ul>
      *
      * @param string html the input HTML
+     * @param boolean partial states if provided HTML is partial or not. Partial means without head / body sections. If null, function tries to autodetect.
      * @return string the HTML converted, as best as possible, to text
      * @throws Html2TextException if the HTML could not be loaded as a {@link \DOMDocument}
      */
-    public static function convert($html)
+    public static function convert($html, $partial = null)
     {
+        if ($partial || $partial === null && mb_strpos($html, '<html ') === false) {
+            $html = '<html lang="en"><head><meta charset="UTF-8" /></head><body>' . $html .'</body>';
+        }
         if ($html == '') {
             return '';
         }
         $html = self::fix_newlines($html);
 
-        $doc = new \DOMDocument();
+        $doc = new \DOMDocument('1.0', 'UTF-8');
         $prevValue = libxml_use_internal_errors(true);
         $loaded = $doc->loadHTML($html);
         libxml_use_internal_errors($prevValue);
