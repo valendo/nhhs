@@ -1,3 +1,4 @@
 <?php
 
-$routes['thuc-don/c/{/id}'] = 'product'; // PublicController::day($day) will handle that
+$routes['thuc-don/{category}/{id}'] = 'category';
+$routes['thuc-don/{category}/{product}/{id}'] = 'product';

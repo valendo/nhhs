@@ -21,7 +21,7 @@
         </aside>
     </div>
 	<div class="main col_12 col_md_12 col_lg_9 right">
-        <?php echo ipSlot('breadcrumb'); ?>
+<!--        --><?php //echo ipSlot('breadcrumb'); ?>
         <?php echo ipBlock('main')->render(); ?>
     </div>
     <div class="clear"></div>

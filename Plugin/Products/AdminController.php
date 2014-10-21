@@ -15,7 +15,7 @@ class AdminController
      * @ipSubmenu Products
      */
     public function index(){
-        $rootCategories = ipDb()->selectAll('productCategory', '*', array('parentId' => -1));
+        $rootCategories = ipDb()->selectAll('productCategory', '*', array('parentId' => null));
         $categoriesSelect = array();
         foreach ($rootCategories as $rootCategory) {
             array_push($categoriesSelect, array($rootCategory['id'], $rootCategory['name']));
@@ -32,6 +32,11 @@ class AdminController
             'createPosition' => 'top',
             'pageSize' => 100,
             'fields' => array(
+                array(
+                    'label' => 'Info',
+                    'type' => 'Tab',
+                    'preview' => false
+                ),
                 array(
                     'type' => 'RepositoryFile',
                     'label' => 'Picture',
@@ -56,17 +61,22 @@ class AdminController
                    'field' => 'categoryID',
                    'values' => $categoriesSelect
                 ),
+//                array(
+//                    'type' => 'Checkbox',
+//                    'label' => 'Option 1',
+//                    'showInList' => true,
+//                    'field' => 'option1'
+//                ),
                 array(
-					'type' => 'richtext',
                     'label' => 'Content',
-                    'field' => 'content',
-					'preview' => false
+                    'type' => 'Tab',
+                    'preview' => false
                 ),
                 array(
-                    'type' => 'Checkbox',
-                    'label' => 'Option 1',
-                    'showInList' => true,
-                    'field' => 'option1'
+                    'type' => 'richtext',
+                    'label' => 'Content',
+                    'field' => 'content',
+                    'preview' => false
                 )
             )
         );
@@ -79,13 +89,6 @@ class AdminController
      */
 	public function submenu()
     {
-        $parentCategories = ipDb()->selectAll('productCategory', '*', array('parentId' => -1));
-        $parentCategoriesSelect = array();
-        array_push($parentCategoriesSelect, array(-1, '- None -'));
-        foreach ($parentCategories as $category) {
-            array_push($parentCategoriesSelect, array($category['id'], $category['name']));
-        }
-
 		$config = array(
             'title' => 'Category List',
             'table' => 'productCategory',
@@ -96,12 +99,6 @@ class AdminController
                     'label' => 'Name',
                     'field' => 'name',
                     'validators' => array('Required')
-                ),
-                array(
-                    'type' => 'Select',
-                    'label' => 'Parent',
-                    'field' => 'parentId',
-                    'values' => $parentCategoriesSelect
                 )
             )
         );
