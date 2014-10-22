@@ -6,14 +6,17 @@ namespace Plugin\Products;
 
 class PublicController extends \Ip\Controller
 {
-    public function category( $id = null)
+    public function category($category = null, $id = null)
     {
         // Uncomment to include assets
         // ipAddJs('assets/application.js');
         // ipAddCss('assets/application.css');
 
+        $products = ipDb()->selectAll('product', '*', array('categoryId' => $id));
+
         $data = array(
-            'id' => $id
+            'category' => $category,
+            'products' => $products
         );
 
         //change the layout if you like
