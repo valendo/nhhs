@@ -1,4 +1,6 @@
+<h3><?php echo $category ?></h3>
 <div class="row">
+
     <?php
     foreach($products as $product)
     {
@@ -15,19 +17,14 @@
     ?>
     <div class="col-md-4">
         <div class="thumbnail">
-            <img alt="300x200" src="<?php echo $picture ?>">
+            <a href="<?php echo $productUrl ?>"><img alt="300x200" src="<?php echo $picture ?>"></a>
 
-            <div class="caption">
-                <h3>
+            <div>
+                <h5 style="text-align: center;min-height:40px;">
                     <?php echo $product["name"] ?>
-                </h3>
-
-                <p>
-                    <?php echo $product["summary"] ?>
-                </p>
-
-                <p>
-                    <a class="btn btn-primary" href="<?php echo $productUrl ?>">Action</a>
+                </h5>
+                <p style="text-align: right;">
+                    <a class="btn-link" href="<?php echo $productUrl ?>">Xem chi tiết</a>
                 </p>
             </div>
         </div>

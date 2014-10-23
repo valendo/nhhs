@@ -13,9 +13,10 @@ class PublicController extends \Ip\Controller
         // ipAddCss('assets/application.css');
 
         $products = ipDb()->selectAll('product', '*', array('categoryId' => $id));
+        $category = ipDb()->selectRow('productCategory', '*', array('id' => $id));
 
         $data = array(
-            'category' => $category,
+            'category' => $category['name'],
             'products' => $products
         );
 
@@ -30,9 +31,9 @@ class PublicController extends \Ip\Controller
         // Uncomment to include assets
         // ipAddJs('assets/application.js');
         // ipAddCss('assets/application.css');
-
+        $product = ipDb()->selectRow('product', '*', array('id' => $id));
         $data = array(
-            'id' => $id
+            'product' => $product
         );
 
         //change the layout if you like
