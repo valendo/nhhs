@@ -1,13 +1,13 @@
 <?php if( !empty( $data['pages']['pages'] ) ): ?>
     <?php foreach( $data['pages']['pages'] as $page ): ?>
         <div class="asdBlog-post">
-            <h2>
+            <h4>
                 <?php if( !empty( $data['blog']['options']['titlelink'] ) ): ?>
                     <a href="<?php echo $page['urlPath']; ?>"><?php echo $page['title']; ?></a>
                 <?php else: ?>
                     <?php echo $page['title']; ?>
                 <?php endif; ?>
-            </h2>
+            </h4>
             <div class="asdBlog-info-top">
                 <?php if( !empty( $data['blog']['info']['date'] ) && $data['blog']['info']['date'] == 1 ): ?>
                     <?php echo date( ipGetOption( 'AsdBlog.dateFormat' ), strtotime( $page['createdAt'] ) ); ?>
@@ -33,7 +33,7 @@
                 <?php endif; ?>
             </div>
             <?php if( !empty( $data['blog']['options']['readmore'] ) ): ?>
-                <div class="asdBlog-read-more"><a href="<?php echo $page['urlPath']; ?>"><?php echo __( 'Read more', 'AsdBlog' ); ?></a></div>
+                <div class="asdBlog-read-more"><a href="<?php echo $page['urlPath']; ?>"><?php echo __( 'Xem chi tiết', 'AsdBlog' ); ?></a></div>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>

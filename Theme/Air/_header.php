@@ -11,6 +11,9 @@
     <header class="clearfix col_12">
         <?php echo ipSlot('logo'); ?>
         <div class="right">
+            <div class="socials">
+                <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
+            </div>
             <span class="currentPage"><?php echo esc(ipContent()->getCurrentPage() ? ipContent()->getCurrentPage()->getTitle() : ''); ?></span>
             <a href="#" class="topmenuToggle">&nbsp;</a>
             <div class="topmenu">

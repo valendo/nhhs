@@ -178,9 +178,13 @@ Move to separate stylesheet if invalid CSS is a problem.
   font-size: 30px;
 }
 .ipWidget h3 {
-  color: #000000;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    margin-top:0;
+    border-bottom: 2px dotted #B08505;
+    color: #B08505;
+    padding-bottom: 3px;
+    margin-bottom:30px;
 }
 .ipWidget ul {
   list-style-position: inside;
@@ -2497,14 +2501,13 @@ a {
   position: relative;
 }
 .wrapper > header {
-  border-bottom: 1px solid #000000;
   margin-bottom: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .wrapper > footer {
-  border-top: 1px solid #000000;
+  border-top: 2px dotted #FAC564;
   margin-top: 20px;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 .wrapper > footer p {
   margin: 0;
@@ -2519,6 +2522,7 @@ a {
 }
 .side {
   clear: left;
+    padding-left:0;
 }
 @media screen and (max-width: 979px) {
   .main + .side {
@@ -2533,7 +2537,7 @@ a {
   margin-bottom: 40px;
 }
 .logo {
-  margin-top: 20px;
+  margin-top: 10px;
   display: block;
   float: left;
 }
@@ -2572,12 +2576,13 @@ a {
   margin-right: 10px;
 }
 .topmenuToggle {
-  background: #019bd4 url(img/icon_menu.png) no-repeat center center;
+  background: #D69D00 url(img/icon_menu.png) no-repeat center center;
   border-radius: 3px;
   color: #019bd4;
   display: none;
   margin-top: 20px;
   padding: 0.75em 1.5em;
+    border:1px solid #AD8107;
 }
 .topmenu {
   float: right;
@@ -2597,16 +2602,19 @@ a {
   display: inline-block;
 }
 .topmenu a {
-  color: #019bd4;
+  color: #1C1502;
   display: block;
   padding: 0.5em 1em;
   white-space: nowrap;
+    font-size: 16px;
+    font-weight: bold;
 }
 .topmenu a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .topmenu .active > a {
   font-weight: bold;
+    color: #8A6603;
 }
 .topmenu .crumb > a {
   color: #000000;
