@@ -72,6 +72,9 @@
                             <a href="#">LIÊN HỆ</a>
                         </li>
                     </ul>
+                    <div class="navbar-right socials">
+                        <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
+                    </div>
                 </div>
 
             </nav>
