@@ -45,12 +45,12 @@ class AdminController
                     'field' => 'name',
                     'validators' => array('Required')
                 ),
-                array(
-					'type' => 'textarea',
-                    'label' => 'Summary',
-                    'field' => 'summary',
-					'preview' => false
-                ),
+//                array(
+//					'type' => 'textarea',
+//                    'label' => 'Summary',
+//                    'field' => 'summary',
+//					'preview' => false
+//                ),
                array(
                    'type' => 'Select',
                    'label' => 'Category',
@@ -59,7 +59,7 @@ class AdminController
                 ),
 //                array(
 //                    'type' => 'Checkbox',
-//                    'label' => 'Option 1',
+//                    'label' => 'New',
 //                    'showInList' => true,
 //                    'field' => 'option1'
 //                ),

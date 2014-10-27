@@ -3,11 +3,16 @@
 <?php
 foreach ($products as $product) {
     $options = array(
-        'type' => 'width',
+        'type' => 'center',
         'width' => '300',
+        'height' => '200',
         'forced' => true
     );
-    $picture = ipFileUrl(ipReflection($product["picture"], $options));
+    $picture = ipHomeUrl() . "theme/air/assets/img/no-image.png";
+    if($product["picture"] !== NULL)
+    {
+        $picture = ipFileUrl(ipReflection($product["picture"], $options));
+    }
     $productUrl = ipHomeUrl() . "thuc-don/"
         . Plugin\Products\Widget\CategoryList\Controller::url_slug($category) . "/"
         . Plugin\Products\Widget\CategoryList\Controller::url_slug($product["name"])
@@ -20,13 +25,13 @@ foreach ($products as $product) {
                     <img style="width:100%;" alt="300x200" src="<?php echo $picture ?>"/>
                 </a>
             </div>
-            <h4 style="min-height:30px;">
+            <h4>
                 <?php echo $product["name"] ?>
             </h4>
 
-            <p style="text-align: right;">
-                <a class="btn-link" href="<?php echo $productUrl ?>">Xem chi tiết</a>
-            </p>
+<!--            <p style="text-align: right;">-->
+<!--                <a class="btn-link" href="--><?php //echo $productUrl ?><!--">Xem chi tiết</a>-->
+<!--            </p>-->
         </div>
     </div>
 <?php } ?>
