@@ -7,6 +7,8 @@ class Event
     public static function ipBeforeController()
     {
         ipAddCss('assets/style.css');
-        //ipAddJs('assets/application.js');
+        ipAddCss('assets/slick/slick.css');
+
+        ipAddJs('assets/slick/slick.js');
     }
 }

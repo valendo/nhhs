@@ -3,6 +3,7 @@
 <head>
     <?php ipAddCss('assets/theme.css'); ?>
     <?php ipAddCss('assets/style.css'); ?>
+    <script src="<?php echo ipHomeUrl() ?>theme/air/assets/jquery-1.11.0.min.js"></script>
     <?php echo ipHead(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>

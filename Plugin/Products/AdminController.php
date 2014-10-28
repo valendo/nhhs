@@ -57,12 +57,12 @@ class AdminController
                    'field' => 'categoryID',
                    'values' => $categoriesSelect
                 ),
-//                array(
-//                    'type' => 'Checkbox',
-//                    'label' => 'New',
-//                    'showInList' => true,
-//                    'field' => 'option1'
-//                ),
+                array(
+                    'type' => 'Checkbox',
+                    'label' => 'New',
+                    'showInList' => true,
+                    'field' => 'option1'
+                ),
                 array(
                     'label' => 'Content',
                     'type' => 'Tab',
