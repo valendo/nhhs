@@ -1,6 +1,6 @@
 <div class="slider responsive">
     <?php
-    foreach ($products as $product) {
+    foreach ($newProducts as $product) {
         $category = ipDb()->selectRow('productCategory', '*', array('id' => $product['categoryID']));
         $options = array(
             'type' => 'center',

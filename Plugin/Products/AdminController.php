@@ -12,7 +12,7 @@ namespace Plugin\Products;
 class AdminController
 {
 	/**
-     * @ipSubmenu Products
+     * @ipSubmenu Thực đơn
      */
     public function index(){
         $rootCategories = ipDb()->selectAll('productCategory', '*', array('parentId' => null));
@@ -22,26 +22,26 @@ class AdminController
         }
 
         $config = array(
-            'title' => 'Product List',
+            'title' => 'Thực đơn',
             'table' => 'product',
             'deleteWarning' => 'Are you sure?',
             'createPosition' => 'top',
             'pageSize' => 100,
             'fields' => array(
                 array(
-                    'label' => 'Info',
+                    'label' => 'Thông tin',
                     'type' => 'Tab',
                     'preview' => false
                 ),
                 array(
                     'type' => 'RepositoryFile',
-                    'label' => 'Picture',
+                    'label' => 'Hình',
                     'showInList' => true,
                     'field' => 'picture',
                     'preview' => __CLASS__ . '::previewPicture'
                 ),
                 array(
-                    'label' => 'Name',
+                    'label' => 'Tên món ăn',
                     'field' => 'name',
                     'validators' => array('Required')
                 ),
@@ -53,24 +53,30 @@ class AdminController
 //                ),
                array(
                    'type' => 'Select',
-                   'label' => 'Category',
+                   'label' => 'Loại',
                    'field' => 'categoryID',
                    'values' => $categoriesSelect
                 ),
                 array(
                     'type' => 'Checkbox',
-                    'label' => 'New',
+                    'label' => 'Món mới',
                     'showInList' => true,
                     'field' => 'option1'
                 ),
                 array(
-                    'label' => 'Content',
+                    'type' => 'Checkbox',
+                    'label' => 'Món đặc sản',
+                    'showInList' => true,
+                    'field' => 'option2'
+                ),
+                array(
+                    'label' => 'Nội dung',
                     'type' => 'Tab',
                     'preview' => false
                 ),
                 array(
                     'type' => 'richtext',
-                    'label' => 'Content',
+                    'label' => 'Nội dung',
                     'field' => 'content',
                     'preview' => false
                 )
@@ -81,18 +87,18 @@ class AdminController
     }
 	
 	/**
-     * @ipSubmenu Categories
+     * @ipSubmenu Phân loại
      */
 	public function submenu()
     {
 		$config = array(
-            'title' => 'Category List',
+            'title' => 'Các loại món',
             'table' => 'productCategory',
             'createPosition' => 'top',
             'pageSize' => 50,
             'fields' => array(
                 array(
-                    'label' => 'Name',
+                    'label' => 'Tên loại món ăn',
                     'field' => 'name',
                     'validators' => array('Required')
                 )
@@ -113,4 +119,5 @@ class AdminController
 
         return '<img src="' . $picture . '" />' ;
     }
+
 }

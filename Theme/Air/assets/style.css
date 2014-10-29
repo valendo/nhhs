@@ -3,7 +3,7 @@ body{
 }
 header
 {
-
+    margin-bottom:10px;
 }
 .wrapper > header {
 
@@ -23,6 +23,7 @@ header
     display: block;
     font-size: 30px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .main
@@ -33,7 +34,10 @@ header
 }
 .list-group {
     padding-left: 0;
-    margin-bottom: 20px;
+}
+.online-chat-box
+{
+    margin-top:10px;
 }
 
 .list-group-item {
@@ -148,21 +152,18 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 .socials {
     color: #fff;
-    margin-top: 5px;
-    overflow: hidden;
     float: right;
-    margin-top: 10px;
-    margin-left:20px;
+    margin: 1px 5px;
 }
 
 .socials .fa {
-    background-color: #695005;
-    font-size: 25px;
-    float: left;
-    line-height: 50px;
-    width: 50px;
-    height: 50px;
-    border-radius: 500px;
+    padding: 0;
+    background-color: #3B5998;
+    line-height: 29px;
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
     text-align: center;
     text-decoration: none;
     color:#fff;
@@ -177,9 +178,22 @@ a.list-group-item.active:focus .list-group-item-text {
     content: "\f09a";
 }
 .wrapper > footer {
+    padding-bottom:20px;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 .responsive
 {
     margin: 0 20px;
+}
+.hotline{
+    float:right;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 10px;
+    background: #e87330;
+    height:40px;
+    height:19px;
+    color: #fff;
+
 }

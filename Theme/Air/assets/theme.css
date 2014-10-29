@@ -94,8 +94,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   color: #3a1c13;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 14px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
+/*
 .ipWidget:before,
 .ipWidget:after {
   content: '.';
@@ -107,6 +108,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   visibility: hidden;
   width: 0;
 }
+*/
 .ipWidget:after {
   clear: both;
 }
@@ -180,7 +182,7 @@ Move to separate stylesheet if invalid CSS is a problem.
 }
 .ipWidget h3 {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     border-bottom: 2px dotted #3A1C13;
     color: #E87330;
     padding-bottom: 3px;
@@ -231,7 +233,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   margin: 0;
 }
 .ipWidget td {
-  border-bottom: 1px solid #747474;
+  /*border-bottom: 1px solid #747474;*/
   font-size: 14px;
   padding: 9px;
 }
@@ -1027,7 +1029,7 @@ fieldset[disabled] .ipModuleForm .checkbox-inline {
   box-sizing: border-box;
   float: left;
   min-height: 1px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   padding: 0 10px;
   position: relative;
 }
@@ -2484,8 +2486,8 @@ body {
   font-size: 14px;
 }
 a {
-  color: #019bd4;
-  text-decoration: none;
+  color: #3a1c13;
+  text-decoration: underline;
 }
 .left {
   float: left;
@@ -2603,6 +2605,7 @@ a {
   white-space: nowrap;
     font-size: 14px;
     font-weight: bold;
+    text-decoration: none;
 }
 .topmenu a:hover {
   text-decoration: none;

@@ -7,7 +7,7 @@ $(document).ready(function () {
     //    $(this).next().css('display', 'block');
     //});
     var asideHeight = $('aside').height();
-    $('.main').css('min-height', asideHeight - 20 + 'px');
+    $('.main').css('min-height', asideHeight + 'px');
 });
 
 /*

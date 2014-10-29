@@ -10,10 +10,16 @@ class Controller extends \Ip\WidgetController
 
     public function generateHtml($revisionId, $widgetId, $data, $skin)
     {
-    	$products = ipDb()->selectAll('product', '*', array('option1' => true));
+    	$newProducts = ipDb()->selectAll('product', '*', array('option1' => true));
+        $featureProducts = ipDb()->selectAll('product', '*', array('option2' => true));
 
-        $data = array ('products' => $products);
+        $data = array ('newProducts' => $newProducts, 'featureProducts' => $featureProducts);
  
         return parent::generateHtml($revisionId, $widgetId, $data, $skin);
     }
+
+//    public function adminHtmlSnippet()
+//    {
+//        return ipView('snippet/edit.php')->render();
+//    }
 }

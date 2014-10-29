@@ -25,6 +25,10 @@
                         <?php echo ipSlot('languages'); ?>
                     </div>
                 <?php } ?>
+                <div class="socials">
+                    <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
+                </div>
+                <div class="hotline">Hotline: 030. 362 6656</div>
             </div>
         </div>
     </header>
