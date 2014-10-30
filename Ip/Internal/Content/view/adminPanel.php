@@ -20,7 +20,7 @@
         <?php if(!$manageableRevision){ ?>
             <div class="_disable">
                 <p>
-                    <?php echo __('This is a preview of older revision, created at', 'Ip-admin'); ?> <?php echo date("Y-m-d H:i", $currentRevision['createdAt']) ?>
+                    <?php echo __('This is a preview of older revision, created at', 'Ip-admin'); ?> <?php echo ipFormatDateTime(strtotime($currentRevision['createdAt']), 'Ip-admin') ?>
                     <a href="#" class="ipsContentPublish"><?php _e('Publish this revision', 'Ip-admin'); ?></a>
                     <a href="#" class="ipsContentSave"><?php _e('Duplicate and edit this revision', 'Ip-admin'); ?></a>
                 </p>
@@ -38,7 +38,7 @@
                             <div id="ipAdminWidgetButton-<?php echo $widget->getName(); ?>" class="_button ipsAdminPanelWidgetButton">
                                 <a href="#" title="<?php echo esc($widget->getTitle()); ?>">
                                     <span class="_title"><span><?php echo esc($widget->getTitle()); ?></span></span>
-                                    <img src="<?php echo esc($widget->getIcon()) ?>" alt="<?php echo htmlspecialchars($widget->getTitle()); ?>" />
+                                    <img class="_icon" src="<?php echo esc($widget->getIcon()) ?>" alt="<?php echo htmlspecialchars($widget->getTitle()); ?>" />
                                 </a>
                             </div>
                         </li>

@@ -82,9 +82,9 @@ class Layout extends \Ip\Response
     protected function chooseLayout()
     {
         if (ipRoute()->isAdmin()) {
-            $this->layout = ipFile('Ip/Internal/Admin/view/layout.php');
+            $this->layout = 'Ip/Internal/Admin/view/layout.php';
         } elseif (\Ip\Internal\Admin\Model::isSafeMode()) {
-            $this->layout = '/Admin/view/safeModeLayout.php';
+            $this->layout = 'Ip/Internal/Admin/view/safeModeLayout.php';
         } else {
             $this->layout = 'main.php';
         }
