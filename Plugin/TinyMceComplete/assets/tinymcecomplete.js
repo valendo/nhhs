@@ -2,6 +2,7 @@ var tinyMceEditorRecall = ipTinyMceConfig;
 
 var ipTinyMceConfig = function () {
     var tinyMceDefault = tinyMceEditorRecall();
+	tinyMceDefault.height = 400;
     tinyMceDefault.style_formats = [
 		{title : 'Header 1', block: 'h1'},
 		{title : 'Header 2', block : 'h2'},
