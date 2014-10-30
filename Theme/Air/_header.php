@@ -28,7 +28,7 @@
                 <div class="socials">
                     <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
                 </div>
-                <div class="hotline">Hotline: 030. 362 6656</div>
+                <div class="hotline">Hotline: 0986 711 048</div>
             </div>
         </div>
     </header>

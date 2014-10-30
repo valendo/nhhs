@@ -1,5 +1,5 @@
 body{
-    background: url('../assets/img/bg.png') no-repeat;
+    background: url('../assets/img/bg.png') repeat-y;
 }
 header
 {
@@ -192,8 +192,7 @@ a.list-group-item.active:focus .list-group-item-text {
     font-weight: bold;
     padding: 6px 10px;
     background: #e87330;
-    height:40px;
-    height:19px;
+    height:18px;
     color: #fff;
 
 }

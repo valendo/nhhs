@@ -984,6 +984,7 @@ fieldset[disabled] .ipModuleForm .checkbox-inline {
     padding: 0 10px;
     width: 50%;
   }
+
 }
 .ipWidget-Html {
   max-width: 100%;
@@ -2717,11 +2718,26 @@ a {
 }
 @media screen and (max-width: 479px) {
 
-  .currentPage,
+    .logo
+    {
+        width: 280px !important;
+        height: 57px  !important;
+        background: url('../assets/img/logo_small.png') no-repeat !important;
+        line-height: 57px !important;
+        margin: 20px auto;
+        text-align: center;
+    }
+    .logo a {
+        display: block;
+        font-size: 20px !important;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    /*
+    .currentPage,
   .topmenuToggle {
     display: inline-block;
   }
-    /*
   .topmenu {
     background-color: #ffffff;
     border: 1px solid #747474;
@@ -2755,6 +2771,9 @@ a {
   .languages a {
     padding: 0.5em 1em;
   }
+
+
+
 }
 .ipWidget-File li {
   background: url(img/icon_download.gif) no-repeat left center;
