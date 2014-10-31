@@ -15,7 +15,8 @@ class Event
    auto: true,
    mode: 'fade',
    speed: 800,
-   captions: true,
+   captions: false,
+   pager: false
  
    });
 
@@ -23,7 +24,7 @@ class Event
    auto: true,
    mode: 'fade',
    speed: 800,
- 
+ pager: false
    });
   });
 

@@ -13,7 +13,10 @@
 
 /** RESET AND LAYOUT
 ===================================*/
-
+.SliderGall
+{
+    margin-top: -5px;
+}
 .bx-wrapper {
 	position: relative;
 	margin: 0 auto 60px;

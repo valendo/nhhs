@@ -75,7 +75,7 @@ class AdminController
                     'preview' => false
                 ),
                 array(
-                    'type' => 'richtext',
+                    'type' => 'RichText',
                     'label' => 'Nội dung',
                     'field' => 'content',
                     'preview' => false
@@ -109,15 +109,22 @@ class AdminController
 
     public static function previewPicture($value, $recordData)
     {
-        $picture = esc($recordData['picture']);
         $options = array(
             'type' => 'width',
             'width' => 100,
             'forced' => true
         );
-        $picture = ipFileUrl(ipReflection($picture, $options));
+        $picture = esc($recordData['picture']);
+        if($picture !== '' && $picture !== null)
+        {
+            $picture = ipFileUrl(ipReflection($picture, $options));
+        }
+        else
+        {
+            $picture = ipThemeUrl("assets/img/no-image.png");
+        }
 
-        return '<img src="' . $picture . '" />' ;
+        return '<img style="width:100px;" src="' . $picture . '" />' ;
     }
 
 }
