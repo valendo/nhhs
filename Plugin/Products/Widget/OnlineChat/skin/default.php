@@ -11,7 +11,7 @@
                     </td>
                     <td>
                         <a href="ymsgr:sendim?<?php echo $yahoo ?>">
-                            <img alt="" src="<?php echo ipHomeUrl()?>/theme/air/assets/img/yahoo.png" width="63" height="36">
+                            <img alt="" src="<?php echo ipThemeUrl("assets/img/yahoo.png"); ?>" width="63" height="36">
                         </a>
                     </td>
                 </tr>
@@ -21,7 +21,7 @@
                     </td>
                     <td>
                         <a href="skype:<?php echo $skype ?>?chat">
-                            <img alt="" src="<?php echo ipHomeUrl()?>/theme/air/assets/img/skype.png" width="63" height="36">
+                            <img alt="" src="<?php echo ipThemeUrl("assets/img/skype.png"); ?>" width="63" height="36">
                         </a>
                     </td>
                 </tr>

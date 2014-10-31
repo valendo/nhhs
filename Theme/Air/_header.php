@@ -1,11 +1,11 @@
 <?php echo ipDoctypeDeclaration(); ?>
 <html<?php echo ipHtmlAttributes(); ?>>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php ipAddCss('assets/theme.css'); ?>
     <?php ipAddCss('assets/style.css'); ?>
-    <script src="<?php echo ipHomeUrl() ?>theme/air/assets/jquery-1.11.0.min.js"></script>
     <?php echo ipHead(); ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="<?php echo ipThemeUrl("assets/jquery-1.11.0.min.js"); ?>" ></script>
 </head>
 <body>
 <div class="wrapper clearfix">

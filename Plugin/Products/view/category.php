@@ -8,7 +8,7 @@ foreach ($products as $product) {
         'height' => '200',
         'forced' => true
     );
-    $picture = ipHomeUrl() . "theme/air/assets/img/no-image.png";
+    $picture = ipThemeUrl("assets/img/no-image.png");
     if($product["picture"] !== NULL && $product["picture"] !== "")
     {
         $picture = ipFileUrl(ipReflection($product["picture"], $options));
