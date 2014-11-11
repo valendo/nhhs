@@ -2585,7 +2585,7 @@ a {
 }
 .topmenu {
     background-color: #F4EFE1;
-    height:31px;
+    height:auto;
 }
 .topmenu ul {
   display: inline;

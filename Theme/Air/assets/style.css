@@ -196,3 +196,14 @@ a.list-group-item.active:focus .list-group-item-text {
     color: #fff;
     line-height: 31px;
 }
+.g_plus {
+    color: #fff;
+    float: right;
+    margin-top:4px;
+    width: 80px;
+}
+.facebook {
+    color: #fff;
+    float: right;
+    margin-top:5px;
+}
