@@ -34,7 +34,7 @@ class Controller extends \Ip\WidgetController
         ,"Ờ","Ớ","Ợ","Ở","Ỡ",
             "Ù","Ú","Ụ","Ủ","Ũ","Ư","Ừ","Ứ","Ự","Ử","Ữ",
             "Ỳ","Ý","Ỵ","Ỷ","Ỹ",
-            "Đ","ê","ù","à");
+            "Đ","ê","ù","à","/","\\");
         $khongDau=array("-","a","a","a","a","a","a","a","a","a","a","a"
         ,"a","a","a","a","a","a",
             "e","e","e","e","e","e","e","e","e","e","e",
@@ -52,7 +52,7 @@ class Controller extends \Ip\WidgetController
         ,"O","O","O","O","O",
             "U","U","U","U","U","U","U","U","U","U","U",
             "Y","Y","Y","Y","Y",
-            "D","e","u","a");
+            "D","e","u","a","-","-");
         return strtolower(str_replace($coDau,$khongDau,$str));
     }
 }
