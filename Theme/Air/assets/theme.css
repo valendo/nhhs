@@ -183,8 +183,8 @@ Move to separate stylesheet if invalid CSS is a problem.
 .ipWidget h3 {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 20px;
-    border-bottom: 2px dotted #3A1C13;
-    color: #E87330;
+    border-bottom: 2px dotted #AD0014;
+    color: #AD0014;
     padding-bottom: 3px;
     margin-bottom:20px;
 }
@@ -214,7 +214,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   margin-top: -0.5em;
 }
 .ipWidget a {
-  color: #3a1c13;
+  color: #AD0014;
   text-decoration: none;
 }
 .ipWidget a:hover {
@@ -755,7 +755,7 @@ fieldset[disabled] .ipModuleForm .checkbox-inline {
   user-select: none;
 }
 .ipModuleForm .btn-default {
-  background: #3A1C13;
+  background: #AD0014;
   border: none;
   border-radius: 3px;
   color: #ffffff;
@@ -767,7 +767,7 @@ fieldset[disabled] .ipModuleForm .checkbox-inline {
 }
 .ipModuleForm .btn-default:hover {
 
-  background: #E87330;
+  background: #AD0014;
 }
 @media (min-width: 768px) {
   .ipModuleForm.form-inline .form-group {
@@ -2487,7 +2487,7 @@ body {
   font-size: 14px;
 }
 a {
-  color: #3a1c13;
+  color: #AD0014;
   text-decoration: underline;
 }
 .left {
@@ -2613,12 +2613,12 @@ a {
 }
 .topmenu a:hover {
   text-decoration: none;
-    background: #E87330;
+    background: #AD0014;
 }
 .topmenu .active > a {
   font-weight: bold;
     color: #f4efe1;
-    background: #3a1c13;
+    background: #AD0014;
 }
 .topmenu .crumb > a {
   color: #000000;
