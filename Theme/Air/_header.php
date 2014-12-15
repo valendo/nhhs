@@ -18,7 +18,7 @@
 <div class="wrapper clearfix">
     <header class="clearfix col_12">
 <!--        --><?php //echo ipSlot('logo'); ?>
-        <div class="logo"><a href="<?php echo ipHomeUrl() ?>">NHÀ HÀNG HOA SƠN</a></div>
+        <div class="logo"><a href="<?php echo ipHomeUrl() ?>"><img src="<?php echo ipThemeUrl("assets/img/logo.png"); ?>"/></a></div>
         <div>
 <!--            <div class="socials">-->
 <!--                <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>-->
